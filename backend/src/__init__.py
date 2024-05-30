@@ -9,7 +9,6 @@ def create_app(test_config=None):
     SECRET_KEY='dev',
     DATABASE=os.path.join(app.instance_path, 'budgetApp.sqlite'),
   )
-
   if test_config is None:
     app.config.from_pyfile('config.py', silent=True)
   else:
@@ -25,4 +24,5 @@ def create_app(test_config=None):
   return app
 
 
-# runs in BE using: flask --app src run --debug
+# runs in BE using: flask --app src run --debug // globally installed so use the shell to run it
+# poetry run flask --app src run --debug
