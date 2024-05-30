@@ -1,5 +1,4 @@
 import sqlite3
-
 import click
 # g is used to store data that might be accessed by multiple functions during the req
 # connection is stored and reused instead of making a new conn if get_db is called a second time in the req
@@ -33,7 +32,6 @@ def init_db_command():
   """Clear the existing data and create new tables."""
   init_db()
   click.echo('Initialized the database.')
-
 
 def init_app(app):
   app.teardown_appcontext(close_db)
