@@ -1,5 +1,6 @@
 from flask import Flask
 from .budgets.budget_routes import budgets_bp
+from . import db
 import os
 
 
@@ -18,6 +19,8 @@ def create_app(test_config=None):
     os.makedirs(app.instance_path)
   except OSError:
     pass
+
+  db.init_app(app)
 
   app.register_blueprint(budgets_bp)
 
