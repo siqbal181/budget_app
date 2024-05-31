@@ -16,7 +16,6 @@ def app():
 
     with app.app_context():
         init_db()
-        # Insert test data into the database
         db = get_db()
         db.execute("INSERT INTO budget (category, amount) VALUES (?, ?)", ('Test Category 1', 100.0))
         db.execute("INSERT INTO budget (category, amount) VALUES (?, ?)", ('Test Category 2', 200.0))
@@ -28,9 +27,11 @@ def app():
     os.unlink(db_path)
 
 @pytest.fixture()
+# test client used to simulate requests to the app
 def client(app):
     return app.test_client()
 
 @pytest.fixture()
+# allows invoking commands in the flask cli
 def runner(app):
     return app.test_cli_runner()
