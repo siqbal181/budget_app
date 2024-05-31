@@ -1,6 +1,6 @@
 
 def test_get_budgets_route(client):
-  response = client.get("/budgets")
+  response = client.get('/budgets')
 
   assert response.status_code == 200
 
@@ -19,3 +19,8 @@ def test_post_budgets_route(client):
 
   response = client.post("/budgets", json=budget_item)
   assert response.status_code == 201
+
+  response_2 = client.get('/budgets')
+  data = response_2.get_json()
+  assert len(data) == 3
+  assert data[-1]['category'] == 'Shopping'
