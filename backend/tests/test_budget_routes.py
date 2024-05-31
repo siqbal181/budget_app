@@ -1,9 +1,12 @@
-# import pytest
-# from . import conftest
+import pytest
+import sqlite3
+from src.db import get_db
 
-# @pytest.fixture
-# def client():
-#   app.config['TESTING'] = True
-#   conftest.client
+def test_get_budgets_route(client):
+  response = client.get("/budgets")
 
-# def test_get_budgets(conftest.client)
+  assert response.status_code == 200
+
+  data = response.get_json()
+
+  assert len(data) == 2
