@@ -6,3 +6,10 @@ CREATE TABLE budget (
   amount REAL,
   date DATETIME NOT NULL DEFAULT(datetime('now'))
 );
+
+CREATE TABLE spend (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  category TEXT,
+  amount REAL,
+  date DATETIME NOT NULL DEFAULT(datetime('now'))
+)
