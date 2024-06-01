@@ -17,11 +17,9 @@ from flask.cli import with_appcontext
 
 def get_db():
     """
-    Get a database connection.
-
-    This function will look to see if there not an existing database in g. If not,
-    it will attach a db to g and create a connection to the database. It sets the row factory
-    to sqlite.Row for easy access to columns by name and returns the database connection
+    See if there not an existing database in g. If not attach a db to g and create a connection
+    to the database. Set the row factory to sqlite.Row for easy access to columns by name and
+    return the database connection
     """
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -33,11 +31,7 @@ def get_db():
 
 
 def close_db(e=None):
-    """
-    Close the database connection.
-
-    This function will remove the db from the global 'g' object and closes if it exists.
-    """
+    """Remove the db from the global 'g' object and close if it exists."""
     db = g.pop('db', None)
 
     if db is not None:
@@ -45,6 +39,10 @@ def close_db(e=None):
 
 
 def init_db():
+    """
+    Get the db connection and use the current application context to open the schema.sql file.
+    Execute SQL commands to create and setup the tables for the database.
+    """
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
@@ -60,6 +58,10 @@ def init_db_command():
 
 
 def init_app(app):
+    """
+    Attaches the app in the argument and uses the teardown context to close the db at the end
+    of each request. Adds a command to the Flask CLI to initialise the database.
+    """
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
 
