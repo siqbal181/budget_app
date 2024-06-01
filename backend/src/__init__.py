@@ -4,6 +4,7 @@ from .budgets.budget_routes import budgets_bp
 from .spends.spend_routes import spend_bp
 from . import db
 
+
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 

@@ -1,13 +1,4 @@
-"""
-Database functions for Flask app
-
-Functions:
-    get_db(): Gets the database connection
-    close_db(): Closes the database connection
-    init_db(): Initialises the database
-    init_db_command(): CLI command to initialise the database
-    init_app(app): Registers database functions with the Flask app.
-"""
+"""Database functions for Flask app"""
 
 import sqlite3
 import click
