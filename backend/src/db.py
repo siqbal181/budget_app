@@ -1,3 +1,14 @@
+"""
+Database functions for Flask app
+
+Functions:
+    get_db(): Gets the database connection
+    close_db(): Closes the database connection
+    init_db(): Initialises the database
+    init_db_command(): CLI command to initialise the database
+    init_app(app): Registers database functions with the Flask app.
+"""
+
 import sqlite3
 import click
 from flask import current_app, g
@@ -5,16 +16,28 @@ from flask.cli import with_appcontext
 
 
 def get_db():
+    """
+    Get a database connection.
+
+    This function will look to see if there not an existing database in g. If not,
+    it will attach a db to g and create a connection to the database. It sets the row factory
+    to sqlite.Row for easy access to columns by name and returns the database connection
+    """
     if 'db' not in g:
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
-    return g.db  # Move return statement outside the if block
+    return g.db
 
 
 def close_db(e=None):
+    """
+    Close the database connection.
+
+    This function will remove the db from the global 'g' object and closes if it exists.
+    """
     db = g.pop('db', None)
 
     if db is not None:
