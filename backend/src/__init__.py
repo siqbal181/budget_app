@@ -1,5 +1,6 @@
 from flask import Flask
 from .budgets.budget_routes import budgets_bp
+from .spends.spend_routes import spend_bp
 from . import db
 import os
 
@@ -25,6 +26,7 @@ def create_app(test_config=None):
   db.init_app(app)
 
   app.register_blueprint(budgets_bp)
+  app.register_blueprint(spend_bp)
 
   return app
 
