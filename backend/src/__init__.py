@@ -8,7 +8,7 @@ from . import db
 
 
 def create_app(test_config=None):
-    """Creates an instance of Flask app and sets up config for testing and database. Registers blueprints"""
+    """Creates Flask app instance and sets up config for testing and db. Registers blueprints"""
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_mapping(
