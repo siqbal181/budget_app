@@ -21,7 +21,7 @@ def get_db():
     return g.db
 
 
-def close_db(e=None):
+def close_db():
     """Remove the db from the global 'g' object and close if it exists."""
     db = g.pop('db', None)
 
