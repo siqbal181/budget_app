@@ -1,3 +1,5 @@
+"""Initialising the application with create_app function and returning the app"""
+
 import os
 from flask import Flask
 from .budgets.budget_routes import budgets_bp
@@ -6,6 +8,7 @@ from . import db
 
 
 def create_app(test_config=None):
+    """Creates an instance of Flask app and sets up config for testing and database. Registers blueprints"""
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_mapping(
