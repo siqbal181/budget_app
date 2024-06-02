@@ -16,7 +16,7 @@ def spend_items():
             data = db.execute("SELECT * FROM spend").fetchall()
 
             spend_items_list = [{"id": row["id"], "amount": row["amount"],
-                                 "category": row["category"]} for row in data]
+                                 "category": row["category"], "date": row["date"]} for row in data]
             return jsonify(spend_items_list), 200
 
         except Exception as e:
