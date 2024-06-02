@@ -11,20 +11,26 @@ def create_app(test_config=None):
     """Creates Flask app instance and sets up config for testing and db. Registers blueprints"""
     app = Flask(__name__, instance_relative_config=True)
 
+    # Obtain the directory of the current file (src/__init__.py)
+    current_dir = os.path.dirname(__file__)
+
+    # Construct the path to the instance folder within the backend directory
+    instance_path = os.path.join(current_dir, '..', 'instance')
+
+    # Ensure the instance folder exists
+    if not os.path.exists(instance_path):
+        os.makedirs(instance_path)
+
+    # Configure Flask app
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'budgetApp.sqlite'),
+        DATABASE=os.path.join(instance_path, 'budgetApp.sqlite'),
     )
 
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
     else:
         app.config.from_mapping(test_config)
-
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
 
     db.init_app(app)
 

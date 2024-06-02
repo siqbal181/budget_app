@@ -10,7 +10,7 @@
   * `Flask` for web framework using `Python`
   * `Poetry` for dependency management
   * `Pytest` for testing
-  * `Pylint` and autopep8 for code quality
+  * `Pylint` and `autopep8` for code quality
 * Frontend
   * `React` for web framework using `TypeScript`
   * `Vite` for build tool
