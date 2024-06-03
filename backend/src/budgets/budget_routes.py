@@ -45,6 +45,7 @@ def budget_items():
             item_id = request.json['id']
             db = get_db()
             db.execute("DELETE FROM budget WHERE id = ?", (item_id,))
+            db.commit()
             return jsonify({"message": "Data successfully deleted"}), 200
         except Exception as e:
             print(f"Error: {e}")
