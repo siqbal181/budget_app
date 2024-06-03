@@ -5,11 +5,13 @@ export interface DataItem {
   id: string;
 }
 
-// export interface SpendDataItem extends DataItem {}
-
-// export interface BudgetDataItem extends DataItem {}
-
 export interface CategoryTableProps {
   data: DataItem[];
   title: string;
+  categoryItem: CategoryItemProps;
+}
+
+export interface CategoryItemProps {
+  name: string;
+  amount: number;
 }
