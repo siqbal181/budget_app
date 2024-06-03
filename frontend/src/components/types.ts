@@ -8,10 +8,9 @@ export interface DataItem {
 export interface CategoryTableProps {
   data: DataItem[];
   title: string;
-  categoryItem: CategoryItemProps;
 }
 
 export interface CategoryItemProps {
-  name: string;
-  amount: number;
+  category: string;
+  amount: string;
 }
