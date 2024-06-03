@@ -16,9 +16,12 @@ export async function fetchBudgets() {
 
 export async function postBudgetItem(budget_item_data: DataItem) {
   try {
-    const response = await axios.post('http://127.0.0.1:5000/budgets', budget_item_data);
+    const response = await axios.post(
+      'http://127.0.0.1:5000/budgets',
+      budget_item_data
+    );
     if (response.status !== 201) {
-      throw new Error('Error in network response')
+      throw new Error('Error in network response');
     }
     const data = response.data;
     return data;

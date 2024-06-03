@@ -24,10 +24,7 @@ export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = () => {
 
   return (
     <>
-      <CategoryTable
-        title="Please enter your budgets here"
-        data={budgetData}
-      />
+      <CategoryTable title="Please enter your budgets here" data={budgetData} />
     </>
   );
 };

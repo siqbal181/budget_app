@@ -1,8 +1,10 @@
-import { FC } from "react";
-import { CategoryItemProps } from "../types";
-import './CategoryItem.css'
+import { FC } from 'react';
+import { CategoryItemProps } from '../types';
+import './CategoryItem.css';
 
-export const CategoryItem: FC<CategoryItemProps> = (props: CategoryItemProps) => {
+export const CategoryItem: FC<CategoryItemProps> = (
+  props: CategoryItemProps
+) => {
   const { category, amount } = props;
 
   return (
@@ -10,5 +12,5 @@ export const CategoryItem: FC<CategoryItemProps> = (props: CategoryItemProps) =>
       <span className="item-text">{category}</span>
       <span className="item-amount">{amount}</span>
     </div>
-  )
-}
+  );
+};
