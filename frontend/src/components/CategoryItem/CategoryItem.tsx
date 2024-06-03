@@ -10,7 +10,7 @@ export const CategoryItem: FC<CategoryItemProps> = (
   return (
     <div className="category-item-container">
       <span className="item-text">{category}</span>
-      <span className="item-amount">{amount}</span>
+      <span className="item-amount">£{amount}</span>
     </div>
   );
 };
