@@ -1,13 +1,12 @@
-import './App.css'
-import { BudgetOverviewPage } from './pages/BudgetOverviewPage'
+import './App.css';
+import { BudgetOverviewPage } from './pages/BudgetOverviewPage';
 
 function App() {
-
   return (
     <>
-      <BudgetOverviewPage/>
+      <BudgetOverviewPage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
