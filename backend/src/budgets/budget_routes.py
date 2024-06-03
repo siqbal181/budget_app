@@ -6,9 +6,9 @@ from src.db import get_db
 budgets_bp = Blueprint("budget_routes", __name__)
 
 
-@budgets_bp.route("/budgets", methods=["POST", "GET"])
+@budgets_bp.route("/budgets", methods=["POST", "GET", "DELETE"])
 def budget_items():
-    """GET or POST to budget items via the /budgets endpoint"""
+    """Enact request methods for budget items via the /budgets endpoint"""
     if request.method == "POST":
         db = get_db()
 
@@ -39,5 +39,14 @@ def budget_items():
             return jsonify(budget_items_list), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500
-
+        
+    elif request.method == 'DELETE':
+        try:
+            item_id = request.json['id']
+            db = get_db()
+            db.execute("DELETE FROM budget WHERE id = ?", (item_id,))
+            return jsonify({"message": "Data successfully deleted"}), 200
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"error": "Unable to delete budget item"}), 500
     return jsonify({"error": "Method not allowed"}), 405
