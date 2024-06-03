@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SpendDataItem } from '../components/types';
+import { DataItem } from '../components/types';
 
 export async function fetchSpends() {
   try {
@@ -14,7 +14,7 @@ export async function fetchSpends() {
   }
 }
 
-export async function postSpendItem(spend_data_item: SpendDataItem) {
+export async function postSpendItem(spend_data_item: DataItem) {
   try {
     const response = await axios.post('http://127.0.0.1:5000/spends', spend_data_item);
     if (response.status !== 201) {
