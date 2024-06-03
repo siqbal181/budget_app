@@ -11,6 +11,7 @@ export const CategoryItem: FC<CategoryItemProps> = (
     <div className="category-item-container">
       <span className="item-text">{category}</span>
       <span className="item-amount">£{amount}</span>
+      <span className="remove-category-button">-</span>
     </div>
   );
 };

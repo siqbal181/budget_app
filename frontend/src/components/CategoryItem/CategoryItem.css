@@ -5,9 +5,22 @@
 }
 
 .item-amount {
-  padding-right: 11rem;
+  padding-right: 1rem;
 }
 
 .item-text {
   padding-left: 0.5rem;
+}
+
+.remove-category-button {
+  border-width: 0.1rem;
+  border-color: black;
+  border-radius: 0.2rem;
+  border-style: solid;
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
 }
