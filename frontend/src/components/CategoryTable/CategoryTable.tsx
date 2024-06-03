@@ -1,7 +1,7 @@
 import { FC } from "react"
 import "./CategoryTable.css"
 import { fetchBudgets } from "../../services/budgetApiService"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 interface CategoryTableProps {
   title: string
@@ -9,10 +9,20 @@ interface CategoryTableProps {
 
 export const CategoryTable: FC<CategoryTableProps> = (props: CategoryTableProps) => {
   const { title } = props;
+  const [budgetData, setBudgetData] = useState('')
 
-useEffect(() => {
-  const budget_data = fetchBudgets()
-  console.log('budget_data:', budget_data)
+  async function fetchBudgetData() {
+    try {
+      const budget_data = await fetchBudgets()
+      setBudgetData(budget_data);
+    } catch {
+      throw new Error("Error fetching budgets")
+    }
+  }
+
+useEffect( () => {
+  fetchBudgetData();
+  console.log(budgetData)
 }, [])
 
   return (
