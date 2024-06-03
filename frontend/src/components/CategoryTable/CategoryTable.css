@@ -34,7 +34,7 @@
   border-style: solid;
   border-radius: 0.5rem;
   padding: 0.3rem;
-  background-color: #FFC72C;
+  background-color: #ffc72c;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -52,7 +52,7 @@
   border-width: 0.1rem;
   border-style: solid;
   border-color: #213547;
-  background-color: #6CB4EE;
+  background-color: #6cb4ee;
   display: flex;
   justify-content: center;
   align-items: center;
