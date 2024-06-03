@@ -38,3 +38,16 @@
 .add-more-text {
   padding-left: 0.5rem;
 }
+
+.save-button {
+  border-radius: 0.5rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #213547;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 2rem;
+  width: 5rem;
+}
