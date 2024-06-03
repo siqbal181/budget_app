@@ -1,5 +1,6 @@
 .category-box {
-  border-color: black;
+  border-color: #213547;
+  border-width: 0.13rem;
   border-style: solid;
   border-radius: 1rem;
   height: 30rem;
