@@ -2,14 +2,11 @@ import { FC } from "react"
 import "./CategoryTable.css"
 import { fetchBudgets } from "../../services/budgetApiService"
 import { useEffect, useState } from "react"
-
-interface CategoryTableProps {
-  title: string
-}
+import { BudgetDataItem, CategoryTableProps } from "../types"
 
 export const CategoryTable: FC<CategoryTableProps> = (props: CategoryTableProps) => {
   const { title } = props;
-  const [budgetData, setBudgetData] = useState('')
+  const [budgetData, setBudgetData] = useState<BudgetDataItem[]>([])
 
   async function fetchBudgetData() {
     try {
@@ -22,7 +19,6 @@ export const CategoryTable: FC<CategoryTableProps> = (props: CategoryTableProps)
 
 useEffect( () => {
   fetchBudgetData();
-  console.log(budgetData)
 }, [])
 
   return (
