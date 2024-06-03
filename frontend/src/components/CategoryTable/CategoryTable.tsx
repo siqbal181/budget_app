@@ -11,11 +11,13 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
       {data.map((dataItem) => (
         <CategoryItem category={dataItem.category} amount={dataItem.amount} />
       ))}
-      <div className="add-more-section">
-        <div className="add-more-button">+</div>
-        <span className="add-more-text">Add more categories</span>
+      <div className='bottom-row'>
+        <div className="add-more-section">
+          <div className="add-more-button">+</div>
+          <span className="add-more-text">Add more categories</span>
+        </div>
+        <div className='save-button'>Save</div>
       </div>
-      <div className='save-button'>Save</div>
     </div>
   );
 };
