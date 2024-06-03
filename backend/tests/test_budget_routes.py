@@ -26,6 +26,7 @@ def test_post_budgets_route(client):
     assert len(data) == 3
     assert data[-1]['category'] == 'Shopping'
 
+
 def test_delete_budget_item_route(client):
     # get data and check 2 items
     respone = client.get('/budgets')

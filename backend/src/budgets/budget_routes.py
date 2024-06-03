@@ -39,7 +39,7 @@ def budget_items():
             return jsonify(budget_items_list), 200
         except Exception as e:
             return jsonify({"error": str(e)}), 500
-        
+
     elif request.method == 'DELETE':
         try:
             item_id = request.json['id']
