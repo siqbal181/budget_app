@@ -9,9 +9,9 @@ export const CategoryItem: FC<CategoryItemProps> = (
 
   return (
     <div className="category-item-container">
-      <span className="item-text">{category}</span>
-      <span className="item-amount">£{amount}</span>
-      <span className="remove-category-button">-</span>
+      <div className="item-text">{category}</div>
+      <div className="item-amount">£{amount}</div>
+      <div className="remove-category-button">-</div>
     </div>
   );
 };
