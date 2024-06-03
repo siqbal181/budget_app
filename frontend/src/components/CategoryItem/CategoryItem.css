@@ -1,0 +1,13 @@
+.category-item-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-amount {
+  padding-right: 11rem;
+}
+
+.item-text {
+  padding-left: 0.5rem;
+}
