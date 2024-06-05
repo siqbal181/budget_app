@@ -1,5 +1,5 @@
 import './App.css';
-import { BudgetOverviewPage } from './pages/BudgetOverviewPage';
+import { BudgetOverviewPage } from './pages/BudgetOverviewPage/BudgetOverviewPage';
 
 function App() {
   return (

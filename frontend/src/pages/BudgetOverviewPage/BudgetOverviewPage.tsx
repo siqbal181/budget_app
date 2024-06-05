@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { CategoryTable } from '../components/CategoryTable/CategoryTable';
-import { fetchBudgets } from '../services/budgetApiService';
-import { DataItem } from '../components/types';
+import { CategoryTable } from '../../components/CategoryTable/CategoryTable';
+import { fetchBudgets } from '../../services/budgetApiService';
+import { DataItem } from '../../components/types';
 import { useEffect, useState } from 'react';
 
 interface BudgetOverviewPageProps {}
