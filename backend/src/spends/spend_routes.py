@@ -35,9 +35,9 @@ def spend_items():
                 "INSERT INTO spend (category, amount) VALUES (?, ?)", (category, amount))
             db.commit()
             return jsonify({"message": "spend item saved successfully."}), 201
-        except db.IntegrityError:
-            return jsonify({"error": "failed to save spend item"}), 500
-        
+        except Exception as e:
+            return jsonify({"error": f'{e}'}), 500
+
     elif request.method == 'DELETE':
         try:
             db = get_db()
@@ -48,7 +48,6 @@ def spend_items():
             db.commit()
             return jsonify({"message": "spend item successfully deleted."}), 200
         except Exception as e:
-            print(f"Error: {e}")
-            return jsonify({"message": "failed to delete spend item."}), 500
-        
+            return jsonify({"error": f'{e}'}), 500
+
     return jsonify({"error": "Method not allowed"}), 405
