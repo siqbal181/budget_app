@@ -11,7 +11,7 @@ from flask_cors import CORS
 def create_app(test_config=None):
     """Creates Flask app instance and sets up config for testing and db. Registers blueprints"""
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app)
+    CORS(app, resources={r"/*": {"origins": "*"}})
 
     # Obtain the directory of the current file (src/__init__.py)
     current_dir = os.path.dirname(__file__)
