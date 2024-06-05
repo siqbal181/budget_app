@@ -1,16 +1,12 @@
-import { render } from "@testing-library/react"
-import { BudgetOverviewPage } from "./BudgetOverviewPage"
+import { render } from '@testing-library/react';
+import { BudgetOverviewPage } from './BudgetOverviewPage';
 import '@testing-library/jest-dom';
 
-describe("When rendering the budget overview page", () => {
+describe('When rendering the budget overview page', () => {
   test("The 'Please enter your budgets here' title should be displayed", async () => {
-    // arrange
-    const {findByLabelText} = render(<BudgetOverviewPage/>);
+    const { findByText } = render(<BudgetOverviewPage />);
 
-    const budgetTitle = await findByLabelText('category-box-title');
+    const budgetTitle = await findByText('Please enter your budgets here');
     expect(budgetTitle).toBeInTheDocument();
-    // act
-
-    // assert
-  })
-})
+  });
+});

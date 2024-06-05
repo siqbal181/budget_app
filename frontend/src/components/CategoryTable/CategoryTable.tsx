@@ -7,7 +7,9 @@ import { CategoryTableProps } from '../types';
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   return (
     <div className="category-box">
-      <p className="category-box-title" aria-label='category-box-title'>{title}</p>
+      <p className="category-box-title" aria-label="category-box-title">
+        {title}
+      </p>
       {data.map((dataItem) => (
         <CategoryItem category={dataItem.category} amount={dataItem.amount} />
       ))}
