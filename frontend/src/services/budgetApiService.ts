@@ -29,3 +29,20 @@ export async function postBudgetItem(budget_item_data: DataItem) {
     console.error('Error posting budget item:', error);
   }
 }
+
+export async function deleteBudgetItem(budget_item_id: { id: number }) {
+  try {
+    const config = {
+      data: budget_item_id,
+    };
+    const response = await axios.delete(
+      'http://127.0.0.1:5000/budgets',
+      config
+    );
+    if (response.status !== 200) {
+      throw new Error('Error deleting budget item.');
+    }
+  } catch (error) {
+    console.error('Error deleting budget item:', error);
+  }
+}
