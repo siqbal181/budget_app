@@ -27,3 +27,19 @@ export async function postSpendItem(spend_data_item: DataItem) {
     console.error('Error posting spend item:', error);
   }
 }
+
+export async function deleteSpendItem(spend_item_id: {'id': number}) {
+  try {
+    const config = {
+      data: {
+        spend_item_id
+      }
+    }
+    const response = await axios.delete('/ttp://127.0.0.1:5000/spends', config)
+    if (response.status !== 200) {
+      throw new Error('Error in network response') 
+    }
+  } catch (error) {
+    console.error('Error deleting spend item', error);
+  }
+}
