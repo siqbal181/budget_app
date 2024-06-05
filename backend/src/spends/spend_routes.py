@@ -6,7 +6,7 @@ from src.db import get_db
 spend_bp = Blueprint("spend_routes", __name__)
 
 
-@spend_bp.route("/spends", methods=['GET', 'POST'])
+@spend_bp.route("/spends", methods=['GET', 'POST', 'DELETE'])
 def spend_items():
     """GET or POST spend items via the /spends endpoint"""
     if request.method == 'GET':
@@ -37,5 +37,18 @@ def spend_items():
             return jsonify({"message": "spend item saved successfully."}), 201
         except db.IntegrityError:
             return jsonify({"error": "failed to save spend item"}), 500
+        
+    elif request.method == 'DELETE':
+        try:
+            db = get_db()
+            item_id = request.json['id']
 
+            #  Without "," it treats item_id as an integer, but with "," its a tuple with length 1
+            db.execute('DELETE FROM spend WHERE id = ?', (item_id,))
+            db.commit()
+            return jsonify({"message": "spend item successfully deleted."}), 200
+        except Exception as e:
+            print(f"Error: {e}")
+            return jsonify({"message": "failed to delete spend item."}), 500
+        
     return jsonify({"error": "Method not allowed"}), 405

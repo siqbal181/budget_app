@@ -8,3 +8,4 @@ Commands:
 * Run the app: `poetry run flask --app src run --debug`
 * autopep8: `poetry run autopep8 --in-place --recursive .`
 * pylint: `poetry run pylint .`
+* Run tests: `poetry run pytest`
