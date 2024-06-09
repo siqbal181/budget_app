@@ -4,9 +4,11 @@ import { fetchBudgets } from '../../services/budgetApiService';
 import { DataItem } from '../../components/types';
 import { useEffect, useState } from 'react';
 
-interface BudgetOverviewPageProps {}
+interface BudgetOverviewPageProps {
+  title: string;
+}
 
-export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = () => {
+export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({ title }) => {
   const [budgetData, setBudgetData] = useState<DataItem[]>([]);
 
   async function fetchBudgetData() {
@@ -24,7 +26,7 @@ export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = () => {
 
   return (
     <>
-      <CategoryTable title="Please enter your budgets here" data={budgetData} />
+      <CategoryTable title={title} data={budgetData} />
     </>
   );
 };

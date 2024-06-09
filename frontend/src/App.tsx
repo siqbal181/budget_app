@@ -4,7 +4,7 @@ import { BudgetOverviewPage } from './pages/BudgetOverviewPage/BudgetOverviewPag
 function App() {
   return (
     <>
-      <BudgetOverviewPage />
+      <BudgetOverviewPage title='Please enter your budgets here'/>
     </>
   );
 }
