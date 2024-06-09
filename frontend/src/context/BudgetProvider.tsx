@@ -8,10 +8,11 @@ interface BudgetContextType {
   getBudgets: () => Promise<void>;
 }
 
-export const BudgetContext = createContext<BudgetContextType>({
+// default values need to be provided in case the context runs without a provider
+export const BudgetContext = createContext<BudgetContextType>({ 
   budgetItems: [],
-  setBudgetItems: () => {},
-  getBudgets: async () => {},
+  setBudgetItems: () => {}, // no op function is the default so the context has a valid function to call
+  getBudgets: async () => {}, // no op async function
 });
 
 export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
@@ -19,13 +20,9 @@ export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getBudgets = async () => {
     try {
-      const response = await fetchBudgets();
-
-      if (response.status !== 200) {
-        throw new Error('Error in network response');
-      }
-      const budgets = response.data;
-      setBudgetItems(budgets);
+      const budget_data = await fetchBudgets();
+      setBudgetItems(budget_data);
+      console.log('budgetItems:', budgetItems)
     } catch (error) {
       console.error('Error fetching budgets:', error);
     }
