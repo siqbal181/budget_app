@@ -18,7 +18,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           <div className="add-more-button">+</div>
           <span className="add-more-text">Add more categories</span>
         </div>
-        <div className="save-button">Save</div>
+        <div className="save-button" data-testid="save-button">Save</div>
       </div>
     </div>
   );
