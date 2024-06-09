@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
-import { DataItem } from "../components/types";
-import { fetchBudgets } from "../services/budgetApiService";
+import { createContext, useState } from 'react';
+import { DataItem } from '../components/types';
+import { fetchBudgets } from '../services/budgetApiService';
 
 interface BudgetContextType {
   budgetItems: DataItem[];
@@ -11,8 +11,8 @@ interface BudgetContextType {
 export const BudgetContext = createContext<BudgetContextType>({
   budgetItems: [],
   setBudgetItems: () => {},
-  getBudgets: async () => {}
-})
+  getBudgets: async () => {},
+});
 
 export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
   const [budgetItems, setBudgetItems] = useState<DataItem[]>([]);
@@ -22,18 +22,18 @@ export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
       const response = await fetchBudgets();
 
       if (response.status !== 200) {
-        throw new Error ("Error in network response")
+        throw new Error('Error in network response');
       }
-      const budgets = response.data
+      const budgets = response.data;
       setBudgetItems(budgets);
     } catch (error) {
-      console.error('Error fetching budgets:', error)
+      console.error('Error fetching budgets:', error);
     }
-  }
+  };
 
   return (
     <BudgetContext.Provider value={{ budgetItems, setBudgetItems, getBudgets }}>
-      { children }
+      {children}
     </BudgetContext.Provider>
-  )
-}
+  );
+};

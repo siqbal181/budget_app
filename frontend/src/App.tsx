@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <BudgetProvider>
-        <BudgetOverviewPage title='Please enter your budgets here'/>
+        <BudgetOverviewPage title="Please enter your budgets here" />
       </BudgetProvider>
     </>
   );
