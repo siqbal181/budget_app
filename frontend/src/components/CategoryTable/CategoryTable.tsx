@@ -11,7 +11,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
         {title}
       </p>
       {data.map((dataItem) => (
-        <CategoryItem category={dataItem.category} amount={dataItem.amount} />
+        <CategoryItem category={dataItem.category} amount={dataItem.amount} key={dataItem.category} />
       ))}
       <div className="bottom-row">
         <div className="add-more-section">
