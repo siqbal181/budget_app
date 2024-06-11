@@ -2,18 +2,18 @@ import { FC } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, DataItem } from '../types';
-// import { deleteBudgetItem } from '../../services/budgetApiService';
-// import { deleteSpendItem } from '../../services/spendApiService';
+import { deleteBudgetItem } from '../../services/budgetApiService';
+import { deleteSpendItem } from '../../services/spendApiService';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
 
-  function handleDelete() {
-    console.log('delete')
-    // try {
-    //   console.log('deleted')
-    // } catch (error) {
-      
-    // }
+  function handleDelete(itemId: string, itemType: string) {
+    console.log(itemId, itemType)
+    try {
+      itemType === 'budget' ? deleteBudgetItem({id: Number(itemId)}) : deleteSpendItem({ id: Number(itemId)})
+    } catch (error) {
+      throw new Error(`Failed to delete ${itemType} item`)
+    }
   }
 
   return (
@@ -28,7 +28,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           amount={dataItem.amount}
           itemId={dataItem.itemId}
           itemType={dataItem.itemType}
-          handleDeleteItem={handleDelete}
+          handleDeleteItem={() => handleDelete(dataItem.itemId, dataItem.itemType)}
         />
       ))}
       <div className="bottom-row">
