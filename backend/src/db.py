@@ -28,29 +28,33 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
+def add_item_type_column(table_name):
+    """
+    Add the 'item_type' column to the specified table if it doesn't already exist.
+    """
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute(f"PRAGMA table_info({table_name})")
+    columns = cursor.fetchall()
+    column_names = [column[1] for column in columns]
+
+    if 'item_type' not in column_names:
+        cursor.execute(f"ALTER TABLE {table_name} ADD COLUMN item_type TEXT")
+        db.commit()
+        print(f"Added 'item_type' column to '{table_name}' table.")
 
 def init_db():
     """
     Initialize the database by executing SQL commands to create and setup the tables.
-    If the 'item_type' column does not exist in the 'budget' table, add it using ALTER TABLE.
+    If the 'item_type' column does not exist in the 'budget' and 'spend' tables, add it using ALTER TABLE.
     """
-    db = get_db()
-
-    # Execute schema.sql
     with current_app.open_resource('schema.sql') as f:
+        db = get_db()
         db.executescript(f.read().decode('utf8'))
 
-    # Add item_type column if it does not exist
-    cursor = db.cursor()
-    cursor.execute("PRAGMA table_info(budget)")
-    columns = cursor.fetchall()
-    column_names = [column[1] for column in columns]
-    if 'item_type' not in column_names:
-        cursor.execute("ALTER TABLE budget ADD COLUMN item_type TEXT")
-        db.commit()
-        print("Added 'item_type' column to 'budget' table.")
-
-
+    add_item_type_column('budget')
+    add_item_type_column('spend')
 
 @click.command('init-db')
 @with_appcontext  # Ensure the command runs within the app context
