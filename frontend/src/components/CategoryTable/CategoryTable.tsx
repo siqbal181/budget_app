@@ -2,11 +2,18 @@ import { FC } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, DataItem } from '../types';
+// import { deleteBudgetItem } from '../../services/budgetApiService';
+// import { deleteSpendItem } from '../../services/spendApiService';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
 
   function handleDelete() {
-    console.log('deleted')
+    console.log('delete')
+    // try {
+    //   console.log('deleted')
+    // } catch (error) {
+      
+    // }
   }
 
   return (
@@ -16,10 +23,11 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
       </p>
       {data.map((dataItem: DataItem) => (
         <CategoryItem
+          key={dataItem.itemId}
           category={dataItem.category}
           amount={dataItem.amount}
-          key={dataItem.itemId}
           itemId={dataItem.itemId}
+          itemType={dataItem.itemType}
           handleDeleteItem={handleDelete}
         />
       ))}
