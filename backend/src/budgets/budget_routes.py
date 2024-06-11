@@ -21,7 +21,7 @@ def budget_items():
 
         try:
             db.execute(
-                "INSERT INTO budget (category, amount) VALUES (?, ?)", (category, amount))
+                "INSERT INTO budget (category, amount, item_type) VALUES (?, ?, 'budget')", (category, amount))
             db.commit()
             return jsonify({"message": "Budget item saved successfully."}), 201
         except db.IntegrityError:
@@ -34,7 +34,7 @@ def budget_items():
             data = db.execute("SELECT * FROM budget").fetchall()
             # need to convert the data into dictionary list before passing into jsonify
             budget_items_list = [{"id": row["id"], "category": row["category"],
-                                  "amount": row["amount"], "date": row["date"]} for row in data]
+                                  "amount": row["amount"], "date": row["date"], "item_type": row["item_type"]} for row in data]
 
             return jsonify(budget_items_list), 200
         except Exception as e:

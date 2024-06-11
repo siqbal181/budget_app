@@ -31,13 +31,25 @@ def close_db(e=None):
 
 def init_db():
     """
-    Get the db connection and use the current application context to open the schema.sql file.
-    Execute SQL commands to create and setup the tables for the database.
+    Initialize the database by executing SQL commands to create and setup the tables.
+    If the 'item_type' column does not exist in the 'budget' table, add it using ALTER TABLE.
     """
     db = get_db()
 
+    # Execute schema.sql
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+
+    # Add item_type column if it does not exist
+    cursor = db.cursor()
+    cursor.execute("PRAGMA table_info(budget)")
+    columns = cursor.fetchall()
+    column_names = [column[1] for column in columns]
+    if 'item_type' not in column_names:
+        cursor.execute("ALTER TABLE budget ADD COLUMN item_type TEXT")
+        db.commit()
+        print("Added 'item_type' column to 'budget' table.")
+
 
 
 @click.command('init-db')

@@ -18,9 +18,9 @@ def app():
     with app.app_context():
         init_db()
         db = get_db()
-        db.execute("INSERT INTO budget (category, amount) VALUES (?, ?)",
+        db.execute("INSERT INTO budget (category, amount, item_type) VALUES (?, ?, 'budget')",
                    ('Test Category 1', 100.0))
-        db.execute("INSERT INTO budget (category, amount) VALUES (?, ?)",
+        db.execute("INSERT INTO budget (category, amount, item_type) VALUES (?, ?, 'budget')",
                    ('Test Category 2', 200.0))
         db.execute(
             "INSERT INTO spend (category, amount) VALUES (?, ?)", ('Rent', 200.0))
