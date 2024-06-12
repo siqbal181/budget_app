@@ -5,7 +5,6 @@ import { useBudgetContext } from '../../hooks/useBudgetContext';
 
 interface BudgetOverviewPageProps {
   title: string;
-  handleDeleteItem: (itemId: string, itemType: string) => void;
 }
 
 export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({ title }) => {
