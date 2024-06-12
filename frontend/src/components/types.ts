@@ -14,7 +14,7 @@ export interface CategoryTableProps {
 export interface CategoryItemProps {
   category: string;
   amount: string;
-  id: string;
+  itemId: string;
   itemType: string;
   handleDeleteItem: (id: string, itemType: string) => void;
 }

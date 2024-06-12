@@ -26,7 +26,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           key={dataItem.id}
           category={dataItem.category}
           amount={dataItem.amount}
-          id={dataItem.id}
+          itemId={dataItem.id}
           itemType={dataItem.item_type}
           handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
