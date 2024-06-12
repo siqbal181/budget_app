@@ -23,12 +23,12 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
       </p>
       {data.map((dataItem: DataItem) => (
         <CategoryItem
-          key={dataItem.itemId}
+          key={dataItem.id}
           category={dataItem.category}
           amount={dataItem.amount}
-          itemId={dataItem.itemId}
-          itemType={dataItem.itemType}
-          handleDeleteItem={() => handleDelete(dataItem.itemId, dataItem.itemType)}
+          id={dataItem.id}
+          itemType={dataItem.item_type}
+          handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
       ))}
       <div className="bottom-row">

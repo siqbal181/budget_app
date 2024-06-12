@@ -2,8 +2,8 @@ export interface DataItem {
   amount: string;
   category: string;
   date: string;
-  itemId: string;
-  itemType: string;
+  id: string;
+  item_type: string;
 }
 
 export interface CategoryTableProps {
@@ -14,7 +14,7 @@ export interface CategoryTableProps {
 export interface CategoryItemProps {
   category: string;
   amount: string;
-  itemId: string;
+  id: string;
   itemType: string;
-  handleDeleteItem: (itemId: string, itemType: string) => void;
+  handleDeleteItem: (id: string, itemType: string) => void;
 }
