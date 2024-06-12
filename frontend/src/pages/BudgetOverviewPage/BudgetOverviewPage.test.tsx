@@ -56,7 +56,7 @@ describe('When rendering the budget overview page', () => {
   });
 
   test("The 'Save' button should be displayed", async () => {
-    const { findByText } = renderBudgetPage()
+    const { findByText } = renderBudgetPage();
 
     const saveButton = await findByText('Save');
     expect(saveButton).toBeInTheDocument();

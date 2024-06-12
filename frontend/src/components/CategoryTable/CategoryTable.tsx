@@ -6,13 +6,14 @@ import { deleteBudgetItem } from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
-
   function handleDelete(itemId: string, itemType: string) {
-    console.log(itemId, itemType)
+    console.log(itemId, itemType);
     try {
-      itemType === 'budget' ? deleteBudgetItem({id: Number(itemId)}) : deleteSpendItem({ id: Number(itemId)})
+      itemType === 'budget'
+        ? deleteBudgetItem({ id: Number(itemId) })
+        : deleteSpendItem({ id: Number(itemId) });
     } catch (error) {
-      throw new Error(`Failed to delete ${itemType} item`)
+      throw new Error(`Failed to delete ${itemType} item`);
     }
   }
 
