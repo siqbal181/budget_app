@@ -12,7 +12,7 @@ export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({ title }) => {
 
   useEffect(() => {
     getBudgets();
-  }, []);
+  }, [getBudgets]);
 
   return (
     <>

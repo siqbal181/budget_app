@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useCallback, useState } from 'react';
 import { DataItem } from '../components/types';
 import { fetchBudgets } from '../services/budgetApiService';
 
@@ -18,15 +18,14 @@ export const BudgetContext = createContext<BudgetContextType>({
 export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
   const [budgetItems, setBudgetItems] = useState<DataItem[]>([]);
 
-  const getBudgets = async () => {
+  const getBudgets = useCallback(async () => {
     try {
       const budget_data = await fetchBudgets();
       setBudgetItems(budget_data);
-      console.log('budgetItems:', budgetItems);
     } catch (error) {
       console.error('Error fetching budgets:', error);
     }
-  };
+  }, []);
 
   return (
     <BudgetContext.Provider value={{ budgetItems, setBudgetItems, getBudgets }}>

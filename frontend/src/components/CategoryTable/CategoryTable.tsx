@@ -4,18 +4,24 @@ import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, DataItem } from '../types';
 import { deleteBudgetItem } from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
+import { useBudgetContext } from '../../hooks/useBudgetContext';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
-  function handleDelete(itemId: string, itemType: string) {
+  const { getBudgets } = useBudgetContext();
+
+  const handleDelete = async (itemId: string, itemType: string) => {
     console.log(itemId, itemType);
     try {
-      itemType === 'budget'
-        ? deleteBudgetItem({ id: Number(itemId) })
-        : deleteSpendItem({ id: Number(itemId) });
+      if (itemType === 'budget') {
+        await deleteBudgetItem({ id: Number(itemId) });
+      } else {
+        await deleteSpendItem({ id: Number(itemId) });
+      }
+      await getBudgets();
     } catch (error) {
-      throw new Error(`Failed to delete ${itemType} item`);
+      console.error(`Failed to delete ${itemType} item`, error);
     }
-  }
+  };
 
   return (
     <div className="category-box">
