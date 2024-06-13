@@ -13,6 +13,7 @@ export const CategoryItem: FC<CategoryItemProps> = (
       <div
         className="remove-category-button"
         onClick={() => handleDeleteItem(itemId, itemType)}
+        data-testid="remove-category"
       >
         -
       </div>

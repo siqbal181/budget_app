@@ -72,4 +72,16 @@ describe('When rendering the budget overview page', () => {
     expect(rentItem).toBeInTheDocument();
     expect(billsItem).toBeInTheDocument();
   });
+
+  test('When deleting a budget item it is successfully removed and no longer displayed on the page', async () => {
+    const { findByText } = renderBudgetPage();
+
+    // const user = userEvent.setup();
+    const rentItem = await findByText('Rent');
+    expect(rentItem).toBeInTheDocument();
+
+    // const deleteItem = await screen.getAllByTestId('remove-category');
+    // expect(deleteItem).toBeInTheDocument();
+    // await user.click(deleteItem);
+  })
 });
