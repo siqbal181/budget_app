@@ -18,6 +18,7 @@ export const BudgetContext = createContext<BudgetContextType>({
 export const BudgetProvider = ({ children }: { children: React.ReactNode }) => {
   const [budgetItems, setBudgetItems] = useState<DataItem[]>([]);
 
+  // useCallback hook memoize getBudgets so it doesn't change on every render
   const getBudgets = useCallback(async () => {
     try {
       const budget_data = await fetchBudgets();
