@@ -11,14 +11,14 @@ const mockBudgetItems = [
     category: 'Rent',
     date: '2024-06-02 16:44:37',
     id: '1',
-    item_type: 'budget'
+    item_type: 'budget',
   },
   {
     amount: '300.0',
     category: 'Bills',
     date: '2024-06-02 16:44:59',
     id: '3',
-    item_type: 'budget'
+    item_type: 'budget',
   },
 ];
 

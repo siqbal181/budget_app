@@ -6,7 +6,6 @@ export const CategoryItem: FC<CategoryItemProps> = (
   props: CategoryItemProps
 ) => {
   const { category, amount, itemId, itemType, handleDeleteItem } = props;
-  console.log(itemId, itemType);
   return (
     <div className="category-item-container">
       <div className="item-text">{category}</div>
