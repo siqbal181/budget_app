@@ -24,7 +24,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   };
 
   return (
-    <div className="category-box">
+    <div className="category-box" aria-label='category-box'>
       <p className="category-box-title" aria-label="category-box-title">
         {title}
       </p>
@@ -39,11 +39,11 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
         />
       ))}
       <div className="bottom-row">
-        <div className="add-more-section">
+        <div className="add-more-section" aria-label='add-more-section'>
           <div className="add-more-button">+</div>
           <span className="add-more-text">Add more categories</span>
         </div>
-        <div className="save-button" data-testid="save-button">
+        <div className="save-button" data-testid="save-button" aria-label='save-button'>
           Save
         </div>
       </div>
