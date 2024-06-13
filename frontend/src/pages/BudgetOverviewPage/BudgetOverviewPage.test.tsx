@@ -83,5 +83,5 @@ describe('When rendering the budget overview page', () => {
     // const deleteItem = await screen.getAllByTestId('remove-category');
     // expect(deleteItem).toBeInTheDocument();
     // await user.click(deleteItem);
-  })
+  });
 });
