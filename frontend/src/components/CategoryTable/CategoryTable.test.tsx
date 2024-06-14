@@ -61,8 +61,8 @@ describe('Integration test for Category table', () => {
     const amountInput = await findByLabelText('amount-input-box');
     expect(amountInput).toBeInTheDocument();
 
-    const saveInputBox = await findByLabelText('save-input');
-    expect(saveInputBox).toBeInTheDocument();
+    const submitInputBox = await findByLabelText('submit-input');
+    expect(submitInputBox).toBeInTheDocument();
 
   });
 });

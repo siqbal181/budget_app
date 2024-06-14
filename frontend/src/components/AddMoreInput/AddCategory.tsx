@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import "./AddCategory.css"
 
-interface AddCategoryProps {}
+interface AddCategoryProps {
+
+}
 
 export const AddCategory: FC<AddCategoryProps> = () => {
   return (
@@ -12,7 +14,7 @@ export const AddCategory: FC<AddCategoryProps> = () => {
       <div className='amount-input-box' aria-label='amount-input-box'>
       <input placeholder='£' className='amount-input'/>
       </div>
-      <div className='save-input' aria-label='save-input'>+</div>
+      <div className='submit-input' aria-label='submit-input'>+</div>
     </div>
   );
 };
