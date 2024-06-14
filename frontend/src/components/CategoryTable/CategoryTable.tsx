@@ -5,11 +5,11 @@ import { CategoryTableProps, DataItem } from '../types';
 import { deleteBudgetItem } from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
-import { AddMoreInput } from '../AddMoreInput/AddMoreInput';
+import { AddCategory } from '../AddMoreInput/AddCategory';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   const { getBudgets } = useBudgetContext();
-  const [addMoreOpen, setAddMoreOpen] = useState(false);
+  const [addCategoryOpen, setAddCategoryOpen] = useState(false);
 
   const handleDelete = async (itemId: string, itemType: string) => {
     try {
@@ -39,12 +39,12 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
       ))}
-      {addMoreOpen && <AddMoreInput />}
+      {addCategoryOpen && <AddCategory />}
       <div className="bottom-row">
         <div
           className="add-more-section"
           aria-label="add-more-section"
-          onClick={() => setAddMoreOpen(true)}
+          onClick={() => setAddCategoryOpen(true)}
         >
           <div className="add-more-button">+</div>
           <span className="add-more-text">Add more categories</span>

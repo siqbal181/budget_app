@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import './AddMoreInput.css';
+import "./AddCategory.css"
 
-interface AddMoreInputProps {}
+interface AddCategoryProps {}
 
-export const AddMoreInput: FC<AddMoreInputProps> = () => {
+export const AddCategory: FC<AddCategoryProps> = () => {
   return (
     <div className="add-more-input-box" aria-label="add-more-input-box">
       <div className='category-input' aria-label='category-input'>
