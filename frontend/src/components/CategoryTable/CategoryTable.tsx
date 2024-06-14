@@ -1,16 +1,17 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, DataItem } from '../types';
 import { deleteBudgetItem } from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
+import { AddMoreInput } from '../AddMoreInput/AddMoreInput';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   const { getBudgets } = useBudgetContext();
-  console.log(data)
+  const [addMoreOpen, setAddMoreOpen] = useState(false);
+
   const handleDelete = async (itemId: string, itemType: string) => {
-    console.log(itemId, itemType);
     try {
       if (itemType === 'budget') {
         await deleteBudgetItem({ id: Number(itemId) });
@@ -39,10 +40,15 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
         />
       ))}
       <div className="bottom-row">
-        <div className="add-more-section" aria-label="add-more-section">
+        <div
+          className="add-more-section"
+          aria-label="add-more-section"
+          onClick={() => setAddMoreOpen(true)}
+        >
           <div className="add-more-button">+</div>
           <span className="add-more-text">Add more categories</span>
         </div>
+        {addMoreOpen && <AddMoreInput />}
         <div
           className="save-button"
           data-testid="save-button"
