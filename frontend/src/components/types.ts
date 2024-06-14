@@ -18,3 +18,8 @@ export interface CategoryItemProps {
   itemType: string;
   handleDeleteItem: (id: string, itemType: string) => void;
 }
+
+export interface NewCategory {
+  category: string;
+  amount: string;
+}
