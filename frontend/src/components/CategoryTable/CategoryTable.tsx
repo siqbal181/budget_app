@@ -8,7 +8,7 @@ import { useBudgetContext } from '../../hooks/useBudgetContext';
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   const { getBudgets } = useBudgetContext();
-
+  console.log(data)
   const handleDelete = async (itemId: string, itemType: string) => {
     console.log(itemId, itemType);
     try {
