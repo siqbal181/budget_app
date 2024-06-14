@@ -4,4 +4,12 @@
   border-style: solid;
   border-width: 0.12rem;
   color: blue;
+  margin: 1rem;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+}
+
+.add-more-category {
+  /* padding-right: 2rem; */
 }

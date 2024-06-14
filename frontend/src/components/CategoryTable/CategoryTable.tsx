@@ -39,6 +39,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
       ))}
+      {addMoreOpen && <AddMoreInput />}
       <div className="bottom-row">
         <div
           className="add-more-section"
@@ -48,7 +49,6 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           <div className="add-more-button">+</div>
           <span className="add-more-text">Add more categories</span>
         </div>
-        {addMoreOpen && <AddMoreInput />}
         <div
           className="save-button"
           data-testid="save-button"
