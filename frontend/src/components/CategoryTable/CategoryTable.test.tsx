@@ -55,11 +55,14 @@ describe('Integration test for Category table', () => {
     const addMoreInput = await findByLabelText('add-more-input-box');
     expect(addMoreInput).toBeInTheDocument();
 
-    const categoryInput = await findByLabelText('category-input');
+    const categoryInput = await findByLabelText('category-input-box');
     expect(categoryInput).toBeInTheDocument();
 
-    const budgetInput = await findByLabelText('budget-input');
-    expect(budgetInput).toBeInTheDocument();
+    const amountInput = await findByLabelText('amount-input-box');
+    expect(amountInput).toBeInTheDocument();
+
+    const saveInputBox = await findByLabelText('save-input');
+    expect(saveInputBox).toBeInTheDocument();
 
   });
 });

@@ -6,13 +6,13 @@ interface AddCategoryProps {}
 export const AddCategory: FC<AddCategoryProps> = () => {
   return (
     <div className="add-more-input-box" aria-label="add-more-input-box">
-      <div className='category-input' aria-label='category-input'>
-        <input placeholder='Category'/>
+      <div className='category-input-box' aria-label='category-input-box'>
+        <input placeholder='Category' className='category-input'/>
       </div>
-      <div className='budget-input' aria-label='budget-input'>
-      <input placeholder='£'/>
+      <div className='amount-input-box' aria-label='amount-input-box'>
+      <input placeholder='£' className='amount-input'/>
       </div>
-      <div className='cancel-input' aria-label='cancel-input'>-</div>
+      <div className='save-input' aria-label='save-input'>+</div>
     </div>
   );
 };
