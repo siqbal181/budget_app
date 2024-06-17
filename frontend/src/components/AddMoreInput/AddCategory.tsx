@@ -16,7 +16,6 @@ const categoryList = ['Bills', 'Rent', 'Shopping', 'Charity'];
 
 export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
   const {
-    register,
     formState: { errors },
     handleSubmit: formSubmit,
     setValue,
@@ -24,7 +23,6 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
   } = useForm<NewCategory>();
 
   const categoryValue = watch('category');
-  const amountValue = watch('amount');
 
   const onSubmit: SubmitHandler<NewCategory> = (data) => {
     handleSubmit(data);
