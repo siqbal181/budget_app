@@ -1,25 +1,18 @@
 .add-more-input-box {
-  display: flex;
-  justify-content: space-around;
   padding: 0.5rem;
+}
+
+.form-structure {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .submit-input {
   font-size: 2rem;
   border: 0.1rem solid black;
   border-radius: 0.2rem;
-  height: 1.5rem;
-  width: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-right: 0.5rem;
   cursor: pointer;
-}
-
-.category-input {
-  width: 7rem;
-  height: 2rem;
 }
 
 .amount-input {

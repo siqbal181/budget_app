@@ -31,7 +31,7 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
 
   return (
     <div className="add-more-input-box" aria-label="add-more-input-box">
-      <form onSubmit={formSubmit(onSubmit)}>
+      <form onSubmit={formSubmit(onSubmit)} className='form-structure'>
         <FormControl fullWidth>
           <InputLabel id="category-label">Category</InputLabel>
           <Select
