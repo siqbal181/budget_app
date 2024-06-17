@@ -2,7 +2,10 @@ import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, DataItem, NewCategory } from '../types';
-import { deleteBudgetItem, postBudgetItem } from '../../services/budgetApiService';
+import {
+  deleteBudgetItem,
+  postBudgetItem,
+} from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
@@ -29,9 +32,9 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
       await postBudgetItem(newCat);
       await getBudgets();
     } catch (error) {
-      console.error('Error added budget item')
+      console.error('Error added budget item');
     }
-  }
+  };
 
   return (
     <div className="category-box" aria-label="category-box">
@@ -48,7 +51,12 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
       ))}
-      {addCategoryOpen && <AddCategory usedCategories={data} handleAddCategory={handleAddCategory} />}
+      {addCategoryOpen && (
+        <AddCategory
+          usedCategories={data}
+          handleAddCategory={handleAddCategory}
+        />
+      )}
       <div className="bottom-row">
         <div
           className="add-more-section"

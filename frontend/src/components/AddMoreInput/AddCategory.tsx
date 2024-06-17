@@ -14,8 +14,10 @@ interface AddCategoryProps {
   handleAddCategory: (newCat: NewCategory) => void;
 }
 
-export const AddCategory: FC<AddCategoryProps> = ({ usedCategories, handleAddCategory }) => {
-
+export const AddCategory: FC<AddCategoryProps> = ({
+  usedCategories,
+  handleAddCategory,
+}) => {
   const {
     formState: { errors },
     handleSubmit: formSubmit,
@@ -28,25 +30,27 @@ export const AddCategory: FC<AddCategoryProps> = ({ usedCategories, handleAddCat
         amount: parseFloat(data.amount) || 0,
       },
       errors: {},
-    })
+    }),
   });
   const [categoriesList, setCategoriesList] = useState<string[]>([]);
 
   const categoryValue = watch('category');
 
   const onSubmit: SubmitHandler<NewCategory> = async (newCat) => {
-    handleAddCategory(newCat)
+    handleAddCategory(newCat);
   };
 
   useEffect(() => {
     const filteredCategories = () => {
-      const usedCatNames = usedCategories.map((category) => (category.category))
+      const usedCatNames = usedCategories.map((category) => category.category);
       const catList = ['Rent', 'Shopping', 'Charity', 'Personal Care', 'Bills'];
-      const filteredList = catList.filter((category) => ( !usedCatNames.includes(category)))
-      setCategoriesList(filteredList)
-    }
+      const filteredList = catList.filter(
+        (category) => !usedCatNames.includes(category)
+      );
+      setCategoriesList(filteredList);
+    };
     filteredCategories();
-  }, [usedCategories])
+  }, [usedCategories]);
 
   return (
     <div className="add-more-input-box" aria-label="add-more-input-box">
@@ -72,8 +76,8 @@ export const AddCategory: FC<AddCategoryProps> = ({ usedCategories, handleAddCat
           id="outlined-basic"
           label="£"
           variant="outlined"
-          onChange={(e) => setValue('amount', (e.target.value))}
-          />
+          onChange={(e) => setValue('amount', e.target.value)}
+        />
         {errors.amount && <span>This field is required</span>}
         <input
           type="submit"
