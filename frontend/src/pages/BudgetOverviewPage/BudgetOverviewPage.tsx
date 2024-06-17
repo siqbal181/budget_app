@@ -6,10 +6,13 @@ import { NewCategory } from '../../components/types';
 
 interface BudgetOverviewPageProps {
   title: string;
-  newCat: NewCategory
+  newCat: NewCategory;
 }
 
-export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({ title, newCat }) => {
+export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({
+  title,
+  newCat,
+}) => {
   const { budgetItems, getBudgets } = useBudgetContext();
 
   useEffect(() => {
