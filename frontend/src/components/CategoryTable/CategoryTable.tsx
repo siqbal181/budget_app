@@ -25,8 +25,8 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   };
 
   const handleAddCategory = () => {
-    console.log('Submitted')
-  }
+    console.log('Submitted');
+  };
 
   return (
     <div className="category-box" aria-label="category-box">
