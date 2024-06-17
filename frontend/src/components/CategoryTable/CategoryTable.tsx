@@ -50,8 +50,8 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           aria-label="add-more-section"
           onClick={() => setAddCategoryOpen(true)}
         >
-          <div className="add-more-button">+</div>
-          <span className="add-more-text">Add more categories</span>
+          <div className="add-more-button" aria-label='add-more-button'>+</div>
+          <span className="add-more-text" aria-label='add-more-text'>Add more categories</span>
         </div>
         <div
           className="save-button"

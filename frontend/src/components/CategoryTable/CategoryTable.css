@@ -1,7 +1,5 @@
 .category-box {
-  border-color: #213547;
-  border-width: 0.13rem;
-  border-style: solid;
+  border: 0.13rem, solid, #213547;
   border-radius: 1rem;
   height: 30rem;
   width: 25rem;
@@ -29,9 +27,7 @@
 }
 
 .add-more-button {
-  border-color: #213547;
-  border-width: 0.1rem;
-  border-style: solid;
+  border: 0.1rem, solid, #213547;
   border-radius: 0.5rem;
   padding: 0.3rem;
   background-color: #ffc72c;
@@ -48,10 +44,8 @@
 }
 
 .save-button {
+  border: 0.1rem, solid, #213547;
   border-radius: 0.5rem;
-  border-width: 0.1rem;
-  border-style: solid;
-  border-color: #213547;
   background-color: #6cb4ee;
   display: flex;
   justify-content: center;
