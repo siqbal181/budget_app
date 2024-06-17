@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './AddCategory.css';
 import { NewCategory } from '../types';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -7,20 +7,21 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
+import { DataItem } from '../types';
 
 interface AddCategoryProps {
   handleSubmit: (data: NewCategory) => void;
+  usedCategories: DataItem[];
 }
 
-const categoryList = ['Bills', 'Rent', 'Shopping', 'Charity'];
-
-export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
+export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit, usedCategories }) => {
   const {
     formState: { errors },
     handleSubmit: formSubmit,
     setValue,
     watch,
   } = useForm<NewCategory>();
+  const [categoriesList, setCategoriesList] = useState<string[]>([]);
 
   const categoryValue = watch('category');
 
@@ -28,6 +29,16 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
     handleSubmit(data);
     console.log(data);
   };
+
+  useEffect(() => {
+    const filteredCategories = () => {
+      const usedCatNames = usedCategories.map((category) => (category.category))
+      const catList = ['Rent', 'Shopping', 'Charity', 'Personal Care', 'Bills'];
+      const filteredList = catList.filter((category) => ( !usedCatNames.includes(category)))
+      setCategoriesList(filteredList)
+    }
+    filteredCategories();
+  }, [usedCategories])
 
   return (
     <div className="add-more-input-box" aria-label="add-more-input-box">
@@ -41,7 +52,7 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
             onChange={(e) => setValue('category', e.target.value)}
             label="Category"
           >
-            {categoryList.map((category) => (
+            {categoriesList.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
               </MenuItem>

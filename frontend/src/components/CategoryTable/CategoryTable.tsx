@@ -43,7 +43,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
       ))}
-      {addCategoryOpen && <AddCategory handleSubmit={handleAddCategory} />}
+      {addCategoryOpen && <AddCategory handleSubmit={handleAddCategory} usedCategories={data} />}
       <div className="bottom-row">
         <div
           className="add-more-section"
