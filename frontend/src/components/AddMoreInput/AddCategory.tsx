@@ -8,13 +8,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import { DataItem } from '../types';
+import { postBudgetItem } from '../../services/budgetApiService';
 
 interface AddCategoryProps {
-  handleSubmit: (newCat: NewCategory) => void;
   usedCategories: DataItem[];
 }
 
-export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit, usedCategories }) => {
+export const AddCategory: FC<AddCategoryProps> = ({ usedCategories }) => {
   const {
     formState: { errors },
     handleSubmit: formSubmit,
@@ -35,7 +35,11 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit, usedCategories
 
   const onSubmit: SubmitHandler<NewCategory> = (newCat) => {
     console.log(newCat)
-    handleSubmit(newCat);
+    try {
+      postBudgetItem(newCat);
+    } catch (error) {
+      console.error('Error added budget item')
+    }
   };
 
   useEffect(() => {

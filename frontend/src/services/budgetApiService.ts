@@ -15,10 +15,15 @@ export async function fetchBudgets() {
 }
 
 export async function postBudgetItem(budget_item_data: NewCategory) {
+  console.log(budget_item_data)
   try {
     const response = await axios.post(
       'http://127.0.0.1:5000/budgets',
-      budget_item_data
+      budget_item_data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
     );
     if (response.status !== 201) {
       throw new Error('Error in network response');
