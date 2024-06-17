@@ -9,6 +9,7 @@ export interface DataItem {
 export interface CategoryTableProps {
   data: DataItem[];
   title: string;
+  newCat: NewCategory;
 }
 
 export interface CategoryItemProps {

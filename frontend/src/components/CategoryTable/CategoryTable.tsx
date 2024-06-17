@@ -2,12 +2,12 @@ import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, DataItem } from '../types';
-import { deleteBudgetItem } from '../../services/budgetApiService';
+import { deleteBudgetItem, postBudgetItem } from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
 
-export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
+export const CategoryTable: FC<CategoryTableProps> = ({ title, data, newCat }) => {
   const { getBudgets } = useBudgetContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
 
@@ -25,7 +25,11 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   };
 
   const handleAddCategory = () => {
-    console.log('Submitted');
+    try {
+      postBudgetItem(newCat);
+    } catch (error) {
+      console.error('Error added budget item')
+    }
   };
 
   return (

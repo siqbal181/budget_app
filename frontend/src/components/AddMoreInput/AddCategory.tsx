@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import { DataItem } from '../types';
 
 interface AddCategoryProps {
-  handleSubmit: (data: NewCategory) => void;
+  handleSubmit: (newCat: NewCategory) => void;
   usedCategories: DataItem[];
 }
 
@@ -20,14 +20,22 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit, usedCategories
     handleSubmit: formSubmit,
     setValue,
     watch,
-  } = useForm<NewCategory>();
+  } = useForm<NewCategory>({
+    resolver: (data) => ({
+      values: {
+        ...data,
+        amount: parseFloat(data.amount) || 0,
+      },
+      errors: {},
+    })
+  });
   const [categoriesList, setCategoriesList] = useState<string[]>([]);
 
   const categoryValue = watch('category');
 
-  const onSubmit: SubmitHandler<NewCategory> = (data) => {
-    handleSubmit(data);
-    console.log(data);
+  const onSubmit: SubmitHandler<NewCategory> = (newCat) => {
+    console.log(newCat)
+    handleSubmit(newCat);
   };
 
   useEffect(() => {
@@ -64,8 +72,8 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit, usedCategories
           id="outlined-basic"
           label="£"
           variant="outlined"
-          onChange={(e) => setValue('amount', e.target.value)}
-        />
+          onChange={(e) => setValue('amount', (e.target.value))}
+          />
         {errors.amount && <span>This field is required</span>}
         <input
           type="submit"

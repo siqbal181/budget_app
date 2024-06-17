@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { DataItem } from '../components/types';
+import { NewCategory } from '../components/types';
 
 export async function fetchBudgets() {
   try {
@@ -14,7 +14,7 @@ export async function fetchBudgets() {
   }
 }
 
-export async function postBudgetItem(budget_item_data: DataItem) {
+export async function postBudgetItem(budget_item_data: NewCategory) {
   try {
     const response = await axios.post(
       'http://127.0.0.1:5000/budgets',
