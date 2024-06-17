@@ -15,7 +15,6 @@ export async function fetchBudgets() {
 }
 
 export async function postBudgetItem(budget_item_data: NewCategory) {
-  console.log(budget_item_data)
   try {
     const response = await axios.post(
       'http://127.0.0.1:5000/budgets',

@@ -7,7 +7,7 @@ import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
 
-export const CategoryTable: FC<CategoryTableProps> = ({ title, data, newCat }) => {
+export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
   const { getBudgets } = useBudgetContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
 

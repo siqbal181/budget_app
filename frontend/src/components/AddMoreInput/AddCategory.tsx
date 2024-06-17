@@ -34,7 +34,6 @@ export const AddCategory: FC<AddCategoryProps> = ({ usedCategories }) => {
   const categoryValue = watch('category');
 
   const onSubmit: SubmitHandler<NewCategory> = (newCat) => {
-    console.log(newCat)
     try {
       postBudgetItem(newCat);
     } catch (error) {
