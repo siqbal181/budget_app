@@ -6,12 +6,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
 
 interface AddCategoryProps {
   handleSubmit: (data: NewCategory) => void;
 }
 
-const categoryList = ["Bills", "Rent", "Shopping", "Charity"];
+const categoryList = ['Bills', 'Rent', 'Shopping', 'Charity'];
 
 export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
   const {
@@ -19,10 +20,11 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
     formState: { errors },
     handleSubmit: formSubmit,
     setValue,
-    watch
+    watch,
   } = useForm<NewCategory>();
 
   const categoryValue = watch('category');
+  const amountValue = watch('amount');
 
   const onSubmit: SubmitHandler<NewCategory> = (data) => {
     handleSubmit(data);
@@ -31,7 +33,7 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
 
   return (
     <div className="add-more-input-box" aria-label="add-more-input-box">
-      <form onSubmit={formSubmit(onSubmit)} className='form-structure'>
+      <form onSubmit={formSubmit(onSubmit)} className="form-structure">
         <FormControl fullWidth>
           <InputLabel id="category-label">Category</InputLabel>
           <Select
@@ -49,11 +51,11 @@ export const AddCategory: FC<AddCategoryProps> = ({ handleSubmit }) => {
           </Select>
         </FormControl>
         {errors.category && <span>This field is required</span>}
-        <input
-          {...register('amount', { required: true })}
-          placeholder="£"
-          className="amount-input"
-          aria-label="amount-input"
+        <TextField
+          id="outlined-basic"
+          label="£"
+          variant="outlined"
+          onChange={(e) => setValue('amount', e.target.value)}
         />
         {errors.amount && <span>This field is required</span>}
         <input
