@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
-import { CategoryTableProps, DataItem } from '../types';
-import { deleteBudgetItem } from '../../services/budgetApiService';
+import { CategoryTableProps, DataItem, NewCategory } from '../types';
+import { deleteBudgetItem, postBudgetItem } from '../../services/budgetApiService';
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
@@ -24,6 +24,15 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
     }
   };
 
+  const handleAddCategory = async (newCat: NewCategory) => {
+    try {
+      await postBudgetItem(newCat);
+      await getBudgets();
+    } catch (error) {
+      console.error('Error added budget item')
+    }
+  }
+
   return (
     <div className="category-box" aria-label="category-box">
       <p className="category-box-title" aria-label="category-box-title">
@@ -39,7 +48,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
           handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
         />
       ))}
-      {addCategoryOpen && <AddCategory usedCategories={data} />}
+      {addCategoryOpen && <AddCategory usedCategories={data} handleAddCategory={handleAddCategory} />}
       <div className="bottom-row">
         <div
           className="add-more-section"

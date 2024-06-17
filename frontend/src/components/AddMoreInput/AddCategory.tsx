@@ -8,15 +8,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import { DataItem } from '../types';
-import { postBudgetItem } from '../../services/budgetApiService';
-import { useBudgetContext } from '../../hooks/useBudgetContext';
 
 interface AddCategoryProps {
   usedCategories: DataItem[];
+  handleAddCategory: (newCat: NewCategory) => void;
 }
 
-export const AddCategory: FC<AddCategoryProps> = ({ usedCategories }) => {
-  const { getBudgets } = useBudgetContext();
+export const AddCategory: FC<AddCategoryProps> = ({ usedCategories, handleAddCategory }) => {
 
   const {
     formState: { errors },
@@ -37,12 +35,7 @@ export const AddCategory: FC<AddCategoryProps> = ({ usedCategories }) => {
   const categoryValue = watch('category');
 
   const onSubmit: SubmitHandler<NewCategory> = async (newCat) => {
-    try {
-      await postBudgetItem(newCat);
-      await getBudgets();
-    } catch (error) {
-      console.error('Error added budget item')
-    }
+    handleAddCategory(newCat)
   };
 
   useEffect(() => {
