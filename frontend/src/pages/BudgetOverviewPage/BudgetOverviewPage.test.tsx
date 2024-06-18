@@ -38,7 +38,7 @@ function renderWithContext(component: React.ReactNode) {
 
 function renderBudgetPage() {
   return renderWithContext(
-    <BudgetOverviewPage title="Please enter your budgets here" />
+    <BudgetOverviewPage title="Please enter your budgets here" newCat={{category: 'test', amount: 'none'}} data={mockBudgetItems} />
   );
 }
 
