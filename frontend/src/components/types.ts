@@ -10,6 +10,7 @@ export interface CategoryTableProps {
   data: DataItem[];
   title: string;
   newCat: NewCategory;
+  dateFilter: boolean;
 }
 
 export interface CategoryItemProps {

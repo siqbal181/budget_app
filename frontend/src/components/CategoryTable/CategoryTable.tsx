@@ -9,8 +9,9 @@ import {
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
+import DateFilter from '../DateFilter/DateFilter';
 
-export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
+export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilter }) => {
   const { getBudgets } = useBudgetContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
 
@@ -41,6 +42,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data }) => {
       <p className="category-box-title" aria-label="category-box-title">
         {title}
       </p>
+      {dateFilter && <DateFilter/>}
       {data.map((dataItem: DataItem) => (
         <CategoryItem
           key={dataItem.id}

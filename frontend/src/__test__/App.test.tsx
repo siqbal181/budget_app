@@ -7,6 +7,6 @@ test('demo', () => {
 });
 
 test('Renders the main page', () => {
-  render(<App />);
+  render(<App newCat={{category: 'test', amount: 'test'}}/>);
   expect(true).toBeTruthy();
 });

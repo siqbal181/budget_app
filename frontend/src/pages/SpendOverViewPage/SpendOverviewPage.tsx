@@ -16,7 +16,7 @@ const SpendOverviewPage: FC<SpendOverviewPageProps> = ({
 }) => {
   return (
     <div>
-      <CategoryTable title={title} newCat={newCat} data={data} />
+      <CategoryTable title={title} newCat={newCat} data={data} dateFilter={true} />
     </div>
   );
 };

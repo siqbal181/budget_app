@@ -21,7 +21,7 @@ const mockData = [
 ];
 
 const renderComponent = () => {
-  return render(<CategoryTable title="Budgets" data={mockData} newCat={{category: 'test', amount: 'test'}} />);
+  return render(<CategoryTable title="Budgets" data={mockData} newCat={{category: 'test', amount: 'test'}} dateFilter={false}/>);
 };
 
 describe('Integration test for Category table', () => {
