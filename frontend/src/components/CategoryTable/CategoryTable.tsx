@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
@@ -12,10 +13,12 @@ import { AddCategory } from '../AddMoreInput/AddCategory';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs, { Dayjs } from 'dayjs';
 
-export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilter }) => {
+export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilterModalOpen }) => {
   const { getBudgets } = useBudgetContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
+  const [dateValue, setDateValue] = React.useState<Dayjs | null>(dayjs())
 
   const handleDelete = async (itemId: string, itemType: string) => {
     try {
@@ -39,14 +42,27 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilter 
     }
   };
 
+  const filterSpendByDate = (date: string) => {
+    console.log('dateValue', dateValue)
+    const dateValueDayOfMonth = dateValue?.date();
+    const dateValueMonth = dateValue?.month();
+    const dateValueYear = dateValue?.year();
+    console.log(`${dateValueYear}-${dateValueMonth}-${dateValueDayOfMonth}`) 
+
+    const dateWithoutTime = (date.split(" ")[0])
+    console.log(dateWithoutTime)
+  }
+
+  console.log(filterSpendByDate("2024-06-11 09:25:56"))
+
   return (
     <div className="category-box" aria-label="category-box">
       <p className="category-box-title" aria-label="category-box-title">
         {title}
       </p>
-      {dateFilter && (
+      {dateFilterModalOpen && (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker
+          <DatePicker value={dateValue} onChange={(newValue) => setDateValue(newValue)}
           />
         </LocalizationProvider>
       )}
