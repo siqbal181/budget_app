@@ -4,40 +4,24 @@ import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, NewCategory } from '../types';
 import {
-  deleteBudgetItem,
   postBudgetItem,
 } from '../../services/budgetApiService';
-import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
-import { useSpendContext } from '../../hooks/useSpendContext';
 
 export const CategoryTable: FC<CategoryTableProps> = ({
   title,
   data,
   dateFilterModalOpen,
+  handleDeleteItem
 }) => {
   const { getBudgets } = useBudgetContext();
-  const { getSpends } = useSpendContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
   const [dateFilter, setDateFiler] = React.useState<Dayjs | null>(dayjs());
-
-  const handleDelete = async (itemId: string, itemType: string) => {
-    try {
-      if (itemType === 'budget') {
-        await deleteBudgetItem({ id: Number(itemId) });
-      } else {
-        await deleteSpendItem({ id: Number(itemId) });
-      }
-      await (itemType === 'budget' ? getBudgets() : getSpends());
-    } catch (error) {
-      console.error(`Failed to delete ${itemType} item`, error);
-    }
-  };
 
   const handleAddCategory = async (newCat: NewCategory) => {
     try {
@@ -75,7 +59,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({
           amount={dataItem.amount}
           itemId={dataItem.id}
           itemType={dataItem.item_type}
-          handleDeleteItem={() => handleDelete(dataItem.id, dataItem.item_type)}
+          handleDeleteItem={() => handleDeleteItem(dataItem.id, dataItem.item_type)}
         />
       ))}
       {addCategoryOpen && (

@@ -11,6 +11,7 @@ export interface CategoryTableProps {
   title: string;
   newCat: NewCategory;
   dateFilterModalOpen: boolean;
+  handleDeleteItem: (dataItem: string, dateItemType: string) => void;
 }
 
 export interface CategoryItemProps {
