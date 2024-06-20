@@ -14,6 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
+import { useSpendContext } from '../../hooks/useSpendContext';
 
 export const CategoryTable: FC<CategoryTableProps> = ({
   title,
@@ -21,6 +22,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({
   dateFilterModalOpen,
 }) => {
   const { getBudgets } = useBudgetContext();
+  const { getSpends } = useSpendContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
   const [dateFilter, setDateFiler] = React.useState<Dayjs | null>(dayjs());
 
@@ -31,7 +33,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({
       } else {
         await deleteSpendItem({ id: Number(itemId) });
       }
-      await getBudgets();
+      await (itemType === 'budget' ? getBudgets() : getSpends());
     } catch (error) {
       console.error(`Failed to delete ${itemType} item`, error);
     }
@@ -46,6 +48,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const filterSpendByDate = () => {
     const dateValueFormat = `${dateFilter?.year()}-${dateFilter?.date()}-${dateFilter?.month()}`;
     return dateValueFormat;
