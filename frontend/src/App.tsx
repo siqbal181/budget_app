@@ -35,7 +35,7 @@ const AppContent = ({ newCat }: AppProps) => {
   }, [getSpends]);
 
   return (
-    <div className='app-structure'>
+    <div className="app-structure">
       <BudgetOverviewPage
         title="Please enter your budgets"
         data={budgetItems}

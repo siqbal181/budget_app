@@ -15,7 +15,12 @@ export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({
 }) => {
   return (
     <>
-      <CategoryTable title={title} data={data} newCat={newCat} dateFilter={false}/>
+      <CategoryTable
+        title={title}
+        data={data}
+        newCat={newCat}
+        dateFilter={false}
+      />
     </>
   );
 };

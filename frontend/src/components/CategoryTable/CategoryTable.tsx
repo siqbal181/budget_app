@@ -12,13 +12,17 @@ import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 
-export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilterModalOpen }) => {
+export const CategoryTable: FC<CategoryTableProps> = ({
+  title,
+  data,
+  dateFilterModalOpen,
+}) => {
   const { getBudgets } = useBudgetContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
-  const [dateValue, setDateValue] = React.useState<Dayjs | null>(dayjs())
+  const [dateFilter, setDateFiler] = React.useState<Dayjs | null>(dayjs());
 
   const handleDelete = async (itemId: string, itemType: string) => {
     try {
@@ -42,15 +46,11 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilterM
     }
   };
 
-  const filterSpendByDate = (date: string) => {
-    console.log('dateValue', dateValue)
-    console.log(`${dateValue?.year()}-${dateValue?.date()}-${dateValue?.month()}`) 
-
-    const dateWithoutTime = (date.split(" ")[0])
-    console.log(dateWithoutTime)
-  }
-
-  console.log(filterSpendByDate("2024-06-11 09:25:56"))
+  const filterSpendByDate = () => {
+    const dateValueFormat = `${dateFilter?.year()}-${dateFilter?.date()}-${dateFilter?.month()}`;
+    return dateValueFormat;
+    // 2024-20-5
+  };
 
   return (
     <div className="category-box" aria-label="category-box">
@@ -59,7 +59,9 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilterM
       </p>
       {dateFilterModalOpen && (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker value={dateValue} onChange={(newValue) => setDateValue(newValue)}
+          <DatePicker
+            value={dateFilter}
+            onChange={(newValue) => setDateFiler(newValue)}
           />
         </LocalizationProvider>
       )}
