@@ -44,10 +44,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilterM
 
   const filterSpendByDate = (date: string) => {
     console.log('dateValue', dateValue)
-    const dateValueDayOfMonth = dateValue?.date();
-    const dateValueMonth = dateValue?.month();
-    const dateValueYear = dateValue?.year();
-    console.log(`${dateValueYear}-${dateValueMonth}-${dateValueDayOfMonth}`) 
+    console.log(`${dateValue?.year()}-${dateValue?.date()}-${dateValue?.month()}`) 
 
     const dateWithoutTime = (date.split(" ")[0])
     console.log(dateWithoutTime)
