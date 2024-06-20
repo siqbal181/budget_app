@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
-import { CategoryTableProps, DataItem, NewCategory } from '../types';
+import { CategoryTableProps, NewCategory } from '../types';
 import {
   deleteBudgetItem,
   postBudgetItem,
@@ -9,7 +9,9 @@ import {
 import { deleteSpendItem } from '../../services/spendApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
-import DateFilter from '../DateFilter/DateFilter';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilter }) => {
   const { getBudgets } = useBudgetContext();
@@ -42,8 +44,13 @@ export const CategoryTable: FC<CategoryTableProps> = ({ title, data, dateFilter 
       <p className="category-box-title" aria-label="category-box-title">
         {title}
       </p>
-      {dateFilter && <DateFilter/>}
-      {data.map((dataItem: DataItem) => (
+      {dateFilter && (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+          />
+        </LocalizationProvider>
+      )}
+      {data.map((dataItem) => (
         <CategoryItem
           key={dataItem.id}
           category={dataItem.category}
