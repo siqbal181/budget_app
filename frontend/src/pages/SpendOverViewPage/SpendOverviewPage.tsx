@@ -21,6 +21,7 @@ const SpendOverviewPage: FC<SpendOverviewPageProps> = ({
         newCat={newCat}
         data={data}
         dateFilterModalOpen={true}
+        handleDeleteItem={() => console.log('delete')}
       />
     </div>
   );
