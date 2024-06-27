@@ -2,6 +2,7 @@ import './SpendOverviewPage.css';
 import { CategoryTable } from '../../components/CategoryTable/CategoryTable';
 import { DataItem, NewCategory } from '../../components/types';
 import { FC } from 'react';
+import { useHandleDelete } from '../../hooks/useHandleDelete';
 
 interface SpendOverviewPageProps {
   title: string;
@@ -14,6 +15,8 @@ const SpendOverviewPage: FC<SpendOverviewPageProps> = ({
   data,
   title,
 }) => {
+  const handleDeleteSpend = useHandleDelete();
+
   return (
     <div>
       <CategoryTable
@@ -21,7 +24,7 @@ const SpendOverviewPage: FC<SpendOverviewPageProps> = ({
         newCat={newCat}
         data={data}
         dateFilterModalOpen={true}
-        handleDeleteItem={() => console.log('delete')}
+        handleDeleteItem={handleDeleteSpend}
       />
     </div>
   );

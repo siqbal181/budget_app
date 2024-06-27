@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { CategoryTable } from '../../components/CategoryTable/CategoryTable';
 import { DataItem, NewCategory } from '../../components/types';
-import { deleteBudgetItem } from '../../services/budgetApiService';
-import { useBudgetContext } from '../../hooks/useBudgetContext';
+import { useHandleDelete } from '../../hooks/useHandleDelete';
 
 interface BudgetOverviewPageProps {
   title: string;
@@ -15,16 +14,7 @@ export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({
   newCat,
   data,
 }) => {
-  const { getBudgets } = useBudgetContext();
-
-  const handleDelete = async (itemId: string, itemType: string) => {
-    try {
-      await deleteBudgetItem({ id: Number(itemId) });
-      await getBudgets();
-    } catch (error) {
-      console.error(`Failed to delete ${itemType} item`, error);
-    }
-  };
+  const handleDeleteBudget = useHandleDelete();
 
   return (
     <>
@@ -33,7 +23,7 @@ export const BudgetOverviewPage: FC<BudgetOverviewPageProps> = ({
         data={data}
         newCat={newCat}
         dateFilterModalOpen={false}
-        handleDeleteItem={handleDelete}
+        handleDeleteItem={handleDeleteBudget}
       />
     </>
   );

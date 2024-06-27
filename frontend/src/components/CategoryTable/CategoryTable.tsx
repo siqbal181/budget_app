@@ -3,9 +3,7 @@ import { FC, useState } from 'react';
 import './CategoryTable.css';
 import { CategoryItem } from '../CategoryItem/CategoryItem';
 import { CategoryTableProps, NewCategory } from '../types';
-import {
-  postBudgetItem,
-} from '../../services/budgetApiService';
+import { postBudgetItem } from '../../services/budgetApiService';
 import { useBudgetContext } from '../../hooks/useBudgetContext';
 import { AddCategory } from '../AddMoreInput/AddCategory';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -17,7 +15,7 @@ export const CategoryTable: FC<CategoryTableProps> = ({
   title,
   data,
   dateFilterModalOpen,
-  handleDeleteItem
+  handleDeleteItem,
 }) => {
   const { getBudgets } = useBudgetContext();
   const [addCategoryOpen, setAddCategoryOpen] = useState(false);
@@ -59,7 +57,9 @@ export const CategoryTable: FC<CategoryTableProps> = ({
           amount={dataItem.amount}
           itemId={dataItem.id}
           itemType={dataItem.item_type}
-          handleDeleteItem={() => handleDeleteItem(dataItem.id, dataItem.item_type)}
+          handleDeleteItem={() =>
+            handleDeleteItem(dataItem.id, dataItem.item_type)
+          }
         />
       ))}
       {addCategoryOpen && (
